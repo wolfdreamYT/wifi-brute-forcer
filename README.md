@@ -3,6 +3,11 @@ this can brute force the wifi router login page (ROGERS WIFI ONLY)
 
 THIS CODE IS NOT TO BE MESSED WITH
 
+DO NOT USE FOR MALICIOUS PURPOSE
+
+This is only for testing, and teaching people/kids how and why these attacks happen. please do not use this code in ANY illegal activity.
+I cannot hold responsibility for any damage caused by your doing, and doing so can effect millions of others.
+
 This code will actually brute force your very own wifi router, or the network your on, and cause stress on it.
 i tested it on my own network, which was rogers ignite (the best) and the network went down completely in matter of moments,
 and did not come back up until i stopped the code.
@@ -20,3 +25,4 @@ i coded this on my own time when i was sick, and i am very very proud to have be
 
 You can control the wifi around you, and if someone pisses you off, you can just force them to use their own cell data by removing
 wifi for everyone
+
